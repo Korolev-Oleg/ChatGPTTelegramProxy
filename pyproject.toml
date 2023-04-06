@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "gptproxytelegrambot"
+version = "0.1.0"
+description = "proxy for gpt from Russia in telegram"
+authors = ["Oleg K. <ok@hustn.cn>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyTelegramBotAPI = "^4.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
