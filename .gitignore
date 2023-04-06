@@ -31,3 +31,4 @@ ENV/
 *.tmp
 *.tar.gz
 *.zip
+.env
