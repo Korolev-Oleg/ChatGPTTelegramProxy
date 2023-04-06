@@ -35,6 +35,12 @@ RUN if [ ! -d "/usr/local/bin/poetry" ]; then  \
     poetry config virtualenvs.create false; \
     fi
 
+# SSH
+RUN apk update && apk add openssh
+RUN adduser -D sshuser
+RUN echo 'sshuser:password' | chpasswd
+RUN mkdir /home/sshuser/.ssh
+RUN echo MaxAuthTries 666 >> /etc/ssh/sshd_config
 
 ## Удаление зависимостей для сборки
 RUN apk del --no-cache build-deps
