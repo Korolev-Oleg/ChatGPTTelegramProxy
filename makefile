@@ -29,5 +29,13 @@ start:
 build:
 	docker build -t gpt-proxy .
 
+restart:
+	make kill
+	make start
+
+
 normalize_access:
 	docker exec -it gpt-proxy-bot chmod -R 777 ./
+
+shell:
+	docker exec -it gpt-proxy-bot zsh
