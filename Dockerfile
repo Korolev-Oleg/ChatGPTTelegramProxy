@@ -1,4 +1,4 @@
-FROM python:3.12.0a6-alpine
+FROM python:3.11.3-alpine3.17
 
 # Установка пакетов python и зависимостей необходимых для их сборки
 RUN apk update && apk upgrade
