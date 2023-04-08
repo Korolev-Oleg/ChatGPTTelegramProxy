@@ -1,5 +1,6 @@
 migrate:
 	docker exec -it gpt-proxy-bot python3 -c "from db.models import create_all; create_all()"
+	make normalize_access
 
 ipython:
 	docker exec -it gpt-proxy-bot ipython
@@ -24,7 +25,8 @@ create:
 
 start:
 	docker start gpt-proxy-bot
-	make enable_ssh
+	make enable_ssh &
+	docker logs -f gpt-proxy-bot
 
 build:
 	docker build -t gpt-proxy .

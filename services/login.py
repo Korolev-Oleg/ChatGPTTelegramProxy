@@ -5,8 +5,8 @@ from loguru import logger
 AUTHENTICATED_USERS = ["hustncn", "sabushka77"]
 
 
-def is_username_authenticate(username):
-    ...
+def authenticate(username) -> User | None:
+    return User.get(User.username == username)
 
 
 def register_user(user: telebot.types.User):
