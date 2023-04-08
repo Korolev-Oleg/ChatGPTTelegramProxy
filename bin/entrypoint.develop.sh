@@ -7,7 +7,7 @@ poetry install --no-interaction --no-ansi
 
 # migrate database
 python -c "
-from db.models import migrate_all
+from db.models import create_all
 migrate_all()
 "
 

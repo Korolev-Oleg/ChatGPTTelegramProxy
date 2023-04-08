@@ -1,5 +1,6 @@
 import telebot
 from db.models import User
+from loguru import logger
 
 AUTHENTICATED_USERS = ["@hustnct", "@sabushka77"]
 
@@ -15,3 +16,4 @@ def register_user(user: telebot.types.User):
     new_user.last_name = user.last_name
     new_user._raw_data_ = user.to_json()
     new_user.save()
+    logger.info('User {} registered!'.format(user.username))

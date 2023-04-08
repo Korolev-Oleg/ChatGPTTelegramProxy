@@ -24,7 +24,7 @@ class Message(BaseModel):
     gpt_response: peewee.TextField()
 
 
-def migrate_all():
+def create_all():
     try:
         db.connect()
         db.create_tables([User, Message])
