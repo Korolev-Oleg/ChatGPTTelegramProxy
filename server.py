@@ -11,13 +11,20 @@ bot = telebot.TeleBot(config["TELEGRAM_API_KEY"])
 
 @logger.catch()
 @bot.message_handler(commands=["start"])
-def send_welcome(message: telebot.types.Message):
-    services.login.register_user(message.from_user)
-    bot.reply_to(
-        message,
-        "Привет! Вы зарегистрированные в системе, "
-        "для доступа к боту напишите @hustncn",
-    )
+def registration(message: telebot.types.Message):
+    user, is_new_user = services.login.register_user(message.from_user)
+    if user.has_access:
+        bot.reply_to(
+            message,
+            "Привет! У вас есть доступ к боту."
+        )
+    else:
+        additional_msg = "Вы зарегистрированы в системе!" if is_new_user else ""
+        bot.reply_to(
+            message,
+            f"Привет! {additional_msg}"
+            "для доступа к боту напишите @hustncn",
+        )
 
 
 @logger.catch()
