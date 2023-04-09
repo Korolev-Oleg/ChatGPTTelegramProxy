@@ -15,7 +15,15 @@ services.gpt.init(config["OPENAI_API_KEY"])
 @logger.catch()
 @bot.message_handler(commands=["start"])
 def registration(message: telebot.types.Message):
-    user, is_new_user = services.login.register_user(message.from_user)
+    if not message.from_user.username:
+        bot.reply_to(
+            message,
+            "Привет! Чтобы начать общение с ботом, "
+            "вам нужно установить имя пользователя в Telegram!",
+        )
+        return
+
+    user, is_new_user = services.auth.register_user(message.from_user)
     if user.has_access:
         bot.reply_to(
             message,
@@ -34,7 +42,7 @@ def registration(message: telebot.types.Message):
 @logger.catch()
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    user = services.login.authenticate(message.from_user.username)
+    user = services.auth.authenticate(message.from_user.username)
     if user.has_access:
         sum_price = 0.002 * Message.get_count(user)
         bot.reply_to(

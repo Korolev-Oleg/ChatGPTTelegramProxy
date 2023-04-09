@@ -12,8 +12,8 @@ class BaseModel(peewee.Model):
 
 class User(BaseModel):
     username = peewee.CharField(max_length=256, unique=True)
-    first_name = peewee.CharField(max_length=256)
-    last_name = peewee.CharField(max_length=256)
+    first_name = peewee.CharField(max_length=256, null=True)
+    last_name = peewee.CharField(max_length=256, null=True)
     has_access = peewee.BooleanField(default=False)
     _raw_data_ = peewee.TextField()
 
